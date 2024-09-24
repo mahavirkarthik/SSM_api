@@ -1,0 +1,33 @@
+service: SSM_api
+
+provider:
+  name: aws
+  runtime: python3.9  # Make sure the runtime matches your code
+  region: us-east-1  # e.g., us-east-1
+  environment:
+    AWS_REGION: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ssm:StartSession"
+        - "ssm:GetSession"
+        - "ssm:DescribeSessions"
+      Resource: "*"
+    - Effect: "Allow"
+      Action:
+        - "ec2:DescribeInstances"
+      Resource: "*"
+  plugins:
+    - serverless-offline
+
+functions:
+  ssmConnect:
+    handler: ssmConnect.lambda_handler
+    events:
+      - http:
+          path: connect
+          method: get
+          request:
+            parameters:
+              querystrings:
+                instance_id: true

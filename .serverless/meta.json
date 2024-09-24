@@ -1,0 +1,110 @@
+{
+  "C:\\Users\\mahav\\OneDrive - SYNECTIKS INC\\Desktop\\SSM_api": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>"
+    },
+    "composeServiceName": null,
+    "servicePath": "C:\\Users\\mahav\\OneDrive - SYNECTIKS INC\\Desktop\\SSM_api",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "SSM_api",
+      "provider": {
+        "name": "aws",
+        "runtime": "python3.9",
+        "region": "us-east-1",
+        "environment": {
+          "AWS_REGION": "us-east-1"
+        },
+        "iamRoleStatements": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ssm:StartSession",
+              "ssm:GetSession",
+              "ssm:DescribeSessions"
+            ],
+            "Resource": "*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ec2:DescribeInstances"
+            ],
+            "Resource": "*"
+          }
+        ],
+        "plugins": [
+          "serverless-offline"
+        ],
+        "stage": "dev",
+        "versionFunctions": true
+      },
+      "functions": {
+        "ssmConnect": {
+          "handler": "ssmConnect.lambda_handler",
+          "events": [
+            {
+              "http": {
+                "path": "connect",
+                "method": "get",
+                "request": {
+                  "parameters": {
+                    "querystrings": {
+                      "instance_id": true
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "serviceRawFile": "service: SSM_api\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: python3.9  # Make sure the runtime matches your code\r\n  region: us-east-1  # e.g., us-east-1\r\n  environment:\r\n    AWS_REGION: us-east-1\r\n  iamRoleStatements:\r\n    - Effect: \"Allow\"\r\n      Action:\r\n        - \"ssm:StartSession\"\r\n        - \"ssm:GetSession\"\r\n        - \"ssm:DescribeSessions\"\r\n      Resource: \"*\"\r\n    - Effect: \"Allow\"\r\n      Action:\r\n        - \"ec2:DescribeInstances\"\r\n      Resource: \"*\"\r\n  plugins:\r\n    - serverless-offline\r\n\r\nfunctions:\r\n  ssmConnect:\r\n    handler: ssmConnect.lambda_handler\r\n    events:\r\n      - http:\r\n          path: connect\r\n          method: get\r\n          request:\r\n            parameters:\r\n              querystrings:\r\n                instance_id: true\r\n",
+    "command": [
+      "offline"
+    ],
+    "options": {},
+    "error": {
+      "message": "Serverless command \"offline\" not found. Run \"serverless help\" for a list of all available commands.",
+      "code": "UNRECOGNIZED_CLI_COMMAND"
+    },
+    "params": {},
+    "machineId": "bcb8c75ad180828b5ae1fbf7b218545c",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "4c941432-8e7c-4863-8c08-47dca64f3f7c",
+    "orgName": "mahavirkarthik",
+    "userId": "71fM1NdmlXcDzVcXZl",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "mahavirkarthik",
+    "subscription": null,
+    "userEmail": "mahavirkarthik27@msitprogram.net",
+    "serviceProviderAwsRegion": "us-east-1",
+    "serviceProviderAwsCredentials": "<REDACTED>",
+    "serviceProviderAwsAccountId": "657907747545",
+    "projectType": "traditional",
+    "versionSf": "4.4.0",
+    "serviceProviderAwsCfStackName": "SSM_api-dev",
+    "serviceUniqueId": null,
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
